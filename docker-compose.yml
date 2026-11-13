@@ -1,0 +1,15 @@
+services:
+  expo:                      # โหมดเขียนโค้ด + Expo Go
+    build: { context: ., dockerfile: Dockerfile.dev }
+    ports: ["8081:8081"]
+    environment:
+      # ใส่ IP เครื่องคอมในวง Wi-Fi เดียวกับมือถือ เช่น 192.168.1.50
+      - REACT_NATIVE_PACKAGER_HOSTNAME=${HOST_IP:-localhost}
+      - CI=false
+    volumes: [".:/app", "/app/node_modules"]
+    stdin_open: true
+    tty: true
+  web:                       # จำลองของจริงบน Render
+    build: .
+    ports: ["10000:10000"]
+    profiles: ["prod"]

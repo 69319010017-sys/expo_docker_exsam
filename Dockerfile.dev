@@ -1,0 +1,9 @@
+# DEV image: รัน Expo dev server ให้นักเรียนสแกน QR ด้วย Expo Go
+FROM node:22-alpine
+WORKDIR /app
+RUN apk add --no-cache git
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 8081
+CMD ["npx", "expo", "start", "--lan"]

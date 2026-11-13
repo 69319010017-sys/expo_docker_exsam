@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: expo-docker-render
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
